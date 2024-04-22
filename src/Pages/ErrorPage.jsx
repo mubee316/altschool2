@@ -9,7 +9,7 @@ function ErrorPage() {
             justify="center"
             h="100vh"
             direction="column"
-            color="white"
+            color="black"
         >
             <Heading as="h1" size="xl" mb={4}>
                 Ooops!
@@ -17,7 +17,7 @@ function ErrorPage() {
             <Text fontSize="lg" textAlign="center" mb={4}>
                 Page not found!
             </Text>
-            <Box bg="red.500" color="white" rounded="md" p={2} mb={4}>
+            <Box bg="red.500" color="black" rounded="md" p={2} mb={4}>
                 Error
             </Box>
             <Text fontSize="lg" textAlign="center" mb={4}>

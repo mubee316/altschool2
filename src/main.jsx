@@ -19,7 +19,7 @@ const root = ReactDOM.createRoot(document.getElementById("root")).render(
     <BrowserRouter>
     
       <ErrorBoundary fallback={<div>Oops! something went wrong</div>}>
-      <Box backgroundColor="black" minHeight="100vh" p="15px">
+      <Box backgroundColor="cream" minHeight="100vh" p="15px">
         <App />
         
       </Box>

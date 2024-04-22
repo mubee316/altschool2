@@ -12,8 +12,8 @@ function App() {
   return (
     <>
       <Helmet>
-        <title>Faateeha's Github</title>
-        <meta name="description" content="Faateeha's Github" />
+        <title>Mubarak's Github</title>
+        <meta name="description" content="Mubarak's Github" />
       </Helmet>
       
         <ChakraProvider>

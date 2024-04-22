@@ -9,7 +9,7 @@ function ErrorBoundary() {
       justify="center"
       h="100vh"
       direction="column"
-      color="white"
+      color="black"
     >
       <Heading as="h1" size="xl" mb={4}>
         Ooops!

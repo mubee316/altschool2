@@ -12,7 +12,7 @@ function RepoDetails() {
     const [notFound, setNotFound] = useState(false); // State to track if repository not found
 
     useEffect(() => {
-        fetch(`https://api.github.com/repos/faateeha/${id}`)
+        fetch(`https://api.github.com/repos/mubee316/${id}`)
             .then(response => {
                 if (response.ok) {
                     return response.json();
@@ -34,7 +34,7 @@ function RepoDetails() {
 
     useEffect(() => {
         if (!notFound) { // Fetch branches and deployment only if repository is found
-            fetch(`https://api.github.com/repos/faateeha/${id}/branches`)
+            fetch(`https://api.github.com/repos/mubee316/${id}/branches`)
                 .then(response => response.json())
                 .then(data => {
                     setBranch(data);
@@ -43,7 +43,7 @@ function RepoDetails() {
                     console.error("Error fetching branches:", error);
                 });
 
-            fetch(`https://api.github.com/repos/faateeha/${id}/deployments`)
+            fetch(`https://api.github.com/repos/mubee316/${id}/deployments`)
                 .then(response => response.json())
                 .then(data => {
                     setDeployment(data);
@@ -62,8 +62,8 @@ function RepoDetails() {
     // Render repository details if found
     return (
         <Box id="repodetail" display="flex" justifyContent="center" marginTop="50px">
-            <Box className="repodetail-card" width="400px" borderWidth="1px" borderRadius="md" padding="20px" color="white">
-                <Text fontSize="24px" fontWeight="bold" marginBottom="10px" color="purple">{details.name}</Text>
+            <Box className="repodetail-card" width="400px" borderWidth="1px" borderRadius="md" padding="20px" color="black">
+                <Text fontSize="24px" fontWeight="bold" marginBottom="10px" color="green">{details.name}</Text>
                 <Box className="repo-mini-details">
                     <Text marginBottom="5px">
                         <FaRegStar className="icons" />
@@ -85,8 +85,8 @@ function RepoDetails() {
                 <Text>Main language: {details.language === null ? "none" : details.language}</Text>
                 <Text>
                     Live Site: {deployment.length === 0 ? "none" :
-                        <ChakraLink href={`https://faateeha.github.io/${details.name}`} textDecoration="underline">
-                            faateeha.github.io/{details.name}
+                        <ChakraLink href={`https://mubee316.github.io/${details.name}`} textDecoration="underline">
+                            mubee316.github.io/{details.name}
                         </ChakraLink>
                     }
                 </Text>
@@ -96,7 +96,7 @@ function RepoDetails() {
                     </ChakraLink>
                 </Text>
                 
-                <Button colorScheme="purple" marginTop="20px" as={RouterLink} to="/">Go back to Home</Button>
+                <Button colorScheme="green" marginTop="20px" as={RouterLink} to="/">Go back to Home</Button>
             </Box>
         </Box>
     );

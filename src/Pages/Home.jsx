@@ -5,23 +5,29 @@ import { Box, Button, Text, Wrap, WrapItem, Center, InputGroup, InputLeftElement
 
 
 function Home() {
-  const [user, setUser] = useState([]);
+  const [userRepoData, setUserRepoData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
   const [search, setSearch] = useState("");
+  const [isloading, setIsLoading]=useState(false)
   
 
   const fetchRepos = (page) => {
+    setIsLoading(true)
     fetch(
-      `https://api.github.com/users/faateeha/repos?page=${page}&per_page=5`
+      `https://api.github.com/users/mubee316/repos?page=${page}&per_page=5`
     )
       .then((response) => response.json())
       .then((data) => {
-        setUser(data);
+        setUserRepoData(data);
+        setIsLoading(false)
       })
       .catch((error) => {
         console.error("Error fetching repositories:", error);
-      });
+        setIsLoading(false)
+      })
+      
+      
   };
 
   const handlePageChange = (page) => {
@@ -33,7 +39,7 @@ function Home() {
   }, [currentPage]);
 
   useEffect(() => {
-    fetch("https://api.github.com/users/faateeha/repos")
+    fetch("https://api.github.com/users/mubee316/repos")
       .then((response) => response.json())
       .then((data) => {
         const totalPages = Math.ceil(data.length / 5);
@@ -46,10 +52,13 @@ function Home() {
 
   return (
     <>
+    {isloading&&(
+      <h1>Loading....</h1>
+    )}
       <InputGroup my="25px" w="500px">
         <InputLeftElement
           pointerEvents="none"
-          children={<Icon as={FaSearch} color="purple" />}
+          children={<Icon as={FaSearch} color="green" />}
         />
         <Input
           type="text"
@@ -57,28 +66,28 @@ function Home() {
           placeholder="Search repository"
           color="white"
           
-          _placeholder={{ color: "purple" }}
+          _placeholder={{ color: "green" }}
         />
       </InputGroup>
       
-      <Wrap spacing={4} justify="center" my="30px">
-        {user.filter((userElement) => {
+      <Wrap spacing={10} justify="center" my="30px">
+        {userRepoData.filter((userElement) => {
           return search.toLowerCase() === "" ? userElement : userElement.name.toLowerCase().includes(search);
         }).map((userElement) => (
           <WrapItem key={userElement.id}>
-            <Box p={3} borderWidth="1px" borderRadius="md">
+            <Box p={3} borderWidth="1px" borderRadius="20px">
               <Link to={`/repodetails/${userElement.name}`}>
-                <Text fontSize="xl" fontWeight="semibold" mb={2} color="purple">
-                  {userElement.name}
+                <Text fontSize="xl" style={{textDecoration:"underline"}} fontWeight="semibold" mb={2} color="green">
+                  {userElement.name.toUpperCase()}
                 </Text>
               </Link>
-              <Text mb={2} color="white">
+              <Text mb={2} color="black">
                 Language: {userElement.language}
               </Text>
-              <Text mb={2} color="white">
+              <Text mb={2} color="black">
                 Last Updated: {userElement.updated_at}
               </Text>
-              <Text mb={2} color="white">
+              <Text mb={2} color="black">
                 Description: {userElement.description}
               </Text>
             </Box>
@@ -89,8 +98,8 @@ function Home() {
         {[...Array(totalPages).keys()].map((page) => (
           <Button
             key={page}
-            colorScheme="purple"
-            color="white"
+            colorScheme="green"
+            color="black"
             mx="5px"
             onClick={() => handlePageChange(page + 1)}
             disabled={currentPage === page + 1}
