@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Box, Button, Text, Wrap, WrapItem, Center,  } from "@chakra-ui/react";
-import SearchBar from "../Components/SearchBar";
-import { SearchResults } from "../Components/SearchResults";
-import ErrorBoundary from "./ErrorBoundary";
+import { FaSearch } from "react-icons/fa";
+import { Box, Button, Text, Wrap, WrapItem, Center, InputGroup, InputLeftElement, Input, Icon  } from "@chakra-ui/react";
+
 
 function Home() {
   const [user, setUser] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
-  const [results, setResults] = useState([]);
+  const [search, setSearch] = useState("");
+  
 
   const fetchRepos = (page) => {
     fetch(
@@ -46,11 +46,25 @@ function Home() {
 
   return (
     <>
-    
-      <SearchBar setResults={setResults} />
-      <SearchResults results={results} />
+      <InputGroup my="25px" w="500px">
+        <InputLeftElement
+          pointerEvents="none"
+          children={<Icon as={FaSearch} color="purple" />}
+        />
+        <Input
+          type="text"
+          onChange={(e) => setSearch(e.target.value)}
+          placeholder="Search repository"
+          color="white"
+          
+          _placeholder={{ color: "purple" }}
+        />
+      </InputGroup>
+      
       <Wrap spacing={4} justify="center" my="30px">
-        {user.map((userElement) => (
+        {user.filter((userElement) => {
+          return search.toLowerCase() === "" ? userElement : userElement.name.toLowerCase().includes(search);
+        }).map((userElement) => (
           <WrapItem key={userElement.id}>
             <Box p={3} borderWidth="1px" borderRadius="md">
               <Link to={`/repodetails/${userElement.name}`}>
