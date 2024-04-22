@@ -1,24 +1,27 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Flex, Heading, Text } from '@chakra-ui/react'; // Import Chakra UI components
 
-class ErrorBoundary extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { hasError: false };
-  }
-
-  componentDidCatch(error, info) {
-    // You can log the error to an error reporting service
-    console.error('Error caught by ErrorBoundary:', error, info);
-    this.setState({ hasError: true });
-  }
-
-  render() {
-    if (this.state.hasError) {
-      // Fallback UI when an error occurs
-      return <h1>Something went wrong. Please try again later.</h1>;
-    }
-    return this.props.children;
-  }
+function ErrorBoundary() {
+  return (
+    <Flex
+      align="center"
+      justify="center"
+      h="100vh"
+      direction="column"
+      color="white"
+    >
+      <Heading as="h1" size="xl" mb={4}>
+        Ooops!
+      </Heading>
+      <Text fontSize="lg" textAlign="center" mb={4}>
+        Something went wrong
+      </Text>
+      <Text fontSize="lg" textAlign="center">
+        Go to <Link to="/" fontWeight="bold">Home Page</Link>
+      </Text>
+    </Flex>
+  );
 }
 
 export default ErrorBoundary;

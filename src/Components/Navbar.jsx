@@ -1,6 +1,6 @@
 import { FaGithub } from "react-icons/fa";
 import { Container, Heading, Text, Button } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 function Navbar() {
   return (
@@ -9,8 +9,10 @@ function Navbar() {
         <FaGithub />
         <Text ml="10px">Faateeha's Github</Text>
       </Heading>
-      <Link to="/Error"><Button m="5px">404 Page</Button></Link>
-      <Link to="/error-boundary"><Button>Error Boundary</Button></Link>
+      <NavLink to="/"><Button>Repos</Button></NavLink>
+      <NavLink to="/Error"><Button m="5px">404 Page</Button></NavLink>
+      <NavLink to="/error-boundary"><Button m="5px">Error Boundary</Button></NavLink>
+      
     </Container>
   );
 }

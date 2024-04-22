@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Box, Button, Text, Wrap, WrapItem, Center,  } from "@chakra-ui/react";
-import SearchBar from "./SearchBar";
-import { SearchResults } from "./SearchResults";
-import ErrorBoundary from "../Pages/ErrorBoundary";
+import SearchBar from "../Components/SearchBar";
+import { SearchResults } from "../Components/SearchResults";
+import ErrorBoundary from "./ErrorBoundary";
 
 function Home() {
   const [user, setUser] = useState([]);
@@ -46,7 +46,7 @@ function Home() {
 
   return (
     <>
-    <ErrorBoundary>
+    
       <SearchBar setResults={setResults} />
       <SearchResults results={results} />
       <Wrap spacing={4} justify="center" my="30px">
@@ -85,7 +85,7 @@ function Home() {
           </Button>
         ))}
       </Center>
-      </ErrorBoundary>
+      
     </>
   );
 }

@@ -95,6 +95,7 @@ function RepoDetails() {
                         View On Github
                     </ChakraLink>
                 </Text>
+                
                 <Button colorScheme="purple" marginTop="20px" as={RouterLink} to="/">Go back to Home</Button>
             </Box>
         </Box>

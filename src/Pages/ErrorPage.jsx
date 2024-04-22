@@ -1,20 +1,32 @@
-// ErrorMessage.jsx
 import React from 'react';
-import {Link,  useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { Flex, Heading, Text, Box } from '@chakra-ui/react'; // Import Chakra UI components
 
-function ErrorMessage() {
-    const location = useLocation();
-
+function ErrorPage() {
     return (
-        <div className="error-page">
-            <h1>Ooops!</h1>
-            <p>Something went wrong</p>
-            <p className="error-status">Error {location.state ? location.state.status : '404'}</p>
-            <p className="error-status-text"><i>{location.state ? location.state.statusText : 'Not Found'}</i></p>
-            <p>Go to <Link to="/"><b>Home Page</b></Link></p>
-        </div>
+        <Flex
+            align="center"
+            justify="center"
+            h="100vh"
+            direction="column"
+            color="white"
+        >
+            <Heading as="h1" size="xl" mb={4}>
+                Ooops!
+            </Heading>
+            <Text fontSize="lg" textAlign="center" mb={4}>
+                Page not found!
+            </Text>
+            <Box bg="red.500" color="white" rounded="md" p={2} mb={4}>
+                Error
+            </Box>
+            <Text fontSize="lg" textAlign="center" mb={4}>
+                Go to <Link to="/" fontWeight="bold">Home Page</Link>
+            </Text>
+        </Flex>
     );
 }
 
-export default ErrorMessage;
+export default ErrorPage;
+
 

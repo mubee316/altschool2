@@ -3,8 +3,10 @@ import { ChakraProvider } from '@chakra-ui/react';
 import { Helmet } from 'react-helmet';
 import ErrorBoundary from './Pages/ErrorBoundary';
 import ErrorPage from './Pages/ErrorPage';
-import Home from './Components/Home'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; // Change from BrowserRouter to Routes
+import AppOutlet from './Pages/AppOutlet';
+import Home from './Pages/Home'
+import RepoDetails from './Pages/RepoDetails'
+import {  Routes, Route } from 'react-router-dom'; // Change from BrowserRouter to Routes
 
 function App() {
   return (
@@ -15,14 +17,19 @@ function App() {
       </Helmet>
       
         <ChakraProvider>
-          <Router>
+          
             <Navbar />
-            <Routes> {/* Wrap Routes around Route components */}
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/repodetails" element={<AppOutlet />} >
+              <Route path=":id" element={<RepoDetails />} />
+              </Route>
               <Route path="/Error" element={<ErrorPage />} /> 
               <Route path="/error-boundary" element={<ErrorBoundary />} /> 
               
-            </Routes>
-          </Router>
+              </Routes>
+         
+          
         </ChakraProvider>
      
     </>

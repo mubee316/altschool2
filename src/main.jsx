@@ -1,41 +1,31 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import {
-  RouterProvider,
-  createBrowserRouter,
-  createRoutesFromElements,
-  Route,
+  BrowserRouter
 } from "react-router-dom";
+import { ErrorBoundary } from "react-error-boundary";
 import App from "./App.jsx";
-import Home from "./Components/Home.jsx";
-import RepoDetails from "./Pages/RepoDetails.jsx";
-import ErrorPage from "./Pages/ErrorPage.jsx";
-import AppOutlet from "./Pages/AppOutlet.jsx";
+
 import { HelmetProvider } from "react-helmet-async";
 import { ChakraProvider, Box } from "@chakra-ui/react";
-import "./index.css";
-import ErrorBoundary from "./Pages/ErrorBoundary.jsx";
 
-const router = createBrowserRouter(
-  createRoutesFromElements(
-    <>
-      <Route path="/" element={<Home />} />
-      <Route path="/repodetails" element={<AppOutlet />}>
-        <Route path=":id" element={<RepoDetails />} />
-        <Route path="Error" element={<ErrorPage />} />
-        <Route path="error-boundary" element={<ErrorBoundary />} />
-      </Route>
-    </>
-  )
-);
 
-ReactDOM.createRoot(document.getElementById("root")).render(
+
+
+
+const root = ReactDOM.createRoot(document.getElementById("root")).render(
   <HelmetProvider>
     <ChakraProvider>
+    <BrowserRouter>
+    
+      <ErrorBoundary fallback={<div>Oops! something went wrong</div>}>
       <Box backgroundColor="black" minHeight="100vh" p="15px">
         <App />
-        <RouterProvider router={router} />
+        
       </Box>
+      </ErrorBoundary>
+
+    </BrowserRouter>
     </ChakraProvider>
   </HelmetProvider>
 );
